@@ -1,14 +1,15 @@
-//Load express module with `require` directive
-var express = require('express')
-var app = express()
+const http = require('http');
 
-//Define request response in root URL (/)
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const hostname = '127.0.0.1';
+const port = 3000;
 
-//Launch listening server on port 8081
-app.listen(8081, function () {
-  console.log('app listening on port 8081!')
-})
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
